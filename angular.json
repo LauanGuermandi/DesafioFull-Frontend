@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "financeiro"
+    }
+  },
+  "defaultProject": "financeiro",
+  "cli": {
+    "analytics": "977119f9-80da-4bb6-9713-a39e5fa8ebe6"
+  }
 }

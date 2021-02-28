@@ -1,0 +1,20 @@
+<app-template-financeiro>
+  <table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>CPF</th>
+            <th>Ver dívidas</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pessoa of pessoas">
+            <td>{{ pessoa.nome }}</td>
+            <td>{{ pessoa.cpf }}</td>
+            <td>
+                <a class="ver" title="Ver" data-toggle="tooltip"><i class="material-icons">&#xe8b6;</i></a>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+</app-template-financeiro>
