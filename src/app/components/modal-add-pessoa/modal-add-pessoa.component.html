@@ -9,7 +9,9 @@
           <fieldset>
             <legend>Adicionar devedor</legend>
 
-            <div *ngIf="pessoaForm.controls['nome'].invalid && (pessoaForm.controls['nome'].dirty || pessoaForm.controls['nome'].touched)" class="alert alert-danger">
+            <div *ngIf="pessoaForm.controls['nome'].invalid
+              && (pessoaForm.controls['nome'].dirty
+              || pessoaForm.controls['nome'].touched)" class="alert alert-danger">
                 <div *ngIf="pessoaForm.controls['nome'].errors.required">
                 O campos nome é obrigatório.
               </div>
@@ -21,6 +23,13 @@
               </div>
             </div>
 
+            <div *ngIf="pessoaForm.controls['cpf'].invalid
+                      && (pessoaForm.controls['cpf'].dirty
+                      || pessoaForm.controls['cpf'].touched)" class="alert alert-danger">
+              <div *ngIf="pessoaForm.controls['cpf'].errors.required">
+              O campos CPF é obrigatório.
+            </div>
+          </div>
             <div class="form-group">
               <label class="col-sm-12 control-label" for="inputCpf">CPF do devedor</label>
               <div class="col-sm-12">

@@ -24,4 +24,8 @@ export class PessoaService {
   post(pessoa: Pessoa){
     return this.http.post(this.baseUrl, pessoa);
   }
+
+  search(text: string){
+    return this.http.get(`${this.baseUrl}/search/${text}`);
+  }
 }

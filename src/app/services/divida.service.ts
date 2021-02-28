@@ -17,7 +17,7 @@ export class DividaService {
     return this.http.get<Divida[]>(`${this.baseUrl}/FromPessoa/${id}`);
   }
 
-  post(pessoa: Divida){
-    return this.http.post(this.baseUrl, pessoa);
+  post(divida: Divida){
+    return this.http.post(this.baseUrl, divida);
   }
 }

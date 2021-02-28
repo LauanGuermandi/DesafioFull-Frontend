@@ -24,15 +24,12 @@ export class DividaComponent implements OnInit {
   ngOnInit(): void {
     const pessoaId = this.activatedRoute.snapshot.params.pessoaId;
     this.getPessoaById(pessoaId);
+    this.getAllDividas(pessoaId);
   }
 
-  getAll() {
-    if (this.pessoa == null) {
-      return;
-    }
-
+  getAllDividas(id: string) {
     this.dividaService
-      .getFromPessoaId(this.pessoa.id)
+      .getFromPessoaId(id)
       .subscribe((data: Array<Divida>) => {
         console.log(data);
         this.dividas = data;
@@ -42,7 +39,6 @@ export class DividaComponent implements OnInit {
   getPessoaById(id: string) {
     this.pessoaService.getById(id).subscribe((data: Pessoa) => {
       this.pessoa = data;
-      this.getAll();
     });
   }
 }

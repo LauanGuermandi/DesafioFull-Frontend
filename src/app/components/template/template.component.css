@@ -1,5 +1,6 @@
 h2{
   margin-top: 0!important;
+  color: #404E67!important;
 }
 
 .title-small h2{
@@ -53,15 +54,7 @@ table.table td a {
 	margin: 0 5px;
 	min-width: 24px;
 }
-table.table td a.add {
-	color: #27C46B;
-}
-table.table td a.edit {
-	color: #FFC107;
-}
-table.table td a.delete {
-	color: #E34724;
-}
+
 table.table td i {
 	font-size: 19px;
 }
@@ -76,9 +69,6 @@ table.table .form-control {
 	line-height: 32px;
 	box-shadow: none;
 	border-radius: 2px;
-}
-table.table .form-control.error {
-	border-color: #f50000;
 }
 table.table td .add {
 	display: none;
@@ -121,15 +111,6 @@ table.table td a {
 	margin: 0 5px;
 	min-width: 24px;
 }
-table.table td a.add {
-	color: #27C46B;
-}
-table.table td a.edit {
-	color: #FFC107;
-}
-table.table td a.delete {
-	color: #E34724;
-}
 table.table td i {
 	font-size: 19px;
 }
@@ -144,9 +125,6 @@ table.table .form-control {
 	line-height: 32px;
 	box-shadow: none;
 	border-radius: 2px;
-}
-table.table .form-control.error {
-	border-color: #f50000;
 }
 table.table td .add {
 	display: none;
