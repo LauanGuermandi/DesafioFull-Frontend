@@ -8,8 +8,7 @@ import { PessoaService } from './../../services/pessoa.service';
 
 @Component({
   selector: 'app-modal-add-pessoa',
-  templateUrl: './modal-add-pessoa.component.html',
-  styleUrls: [ './modal-add-pessoa.component.css' ]
+  templateUrl: './modal-add-pessoa.component.html'
 })
 export class ModalAddPessoaComponent implements OnInit {
   modalRef: BsModalRef;

@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ModalAddPessoaComponent } from './components/modal-add-pessoa/modal-add-pessoa.component';
 import { PessoaComponent } from './components/pessoa/pessoa.component';
+import { DividaComponent } from './components/divida/divida.component';
 
 const maskConfig: Partial<IConfig> = {
   validation: false,
@@ -21,7 +22,8 @@ const maskConfig: Partial<IConfig> = {
     AppComponent,
     ModalAddPessoaComponent,
     TemplateComponent,
-    PessoaComponent
+    PessoaComponent,
+    DividaComponent
   ],
   imports: [
     BrowserModule,

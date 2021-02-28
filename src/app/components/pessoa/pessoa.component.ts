@@ -14,9 +14,12 @@ export class PessoaComponent implements OnInit {
   constructor(public pessoaService: PessoaService) { }
 
   ngOnInit() {
+    this.getAll();
+  }
+
+  getAll() {
     this.pessoaService.getAll().subscribe((data: Pessoa[]) => {
       this.pessoas = data;
-      console.log(this.pessoas);
     });
   }
 }

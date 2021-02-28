@@ -1,10 +1,6 @@
-export class Pessoa {
-  constructor() {
-    this.id = null;
-    this.nome = null;
-    this.cpf = null;
-  }
-  id: string;
-  nome: string;
-  cpf: string;
+import { BaseModel } from './base-model.model';
+
+export class Pessoa extends BaseModel{
+  public nome: string;
+  public cpf: string;
 }
