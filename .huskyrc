@@ -1,0 +1,6 @@
+{
+    "hooks": {
+        "pre-commit": "lint-staged && npm run test && ng lint --fix",
+        "pre-push": "ng build"
+    }
+}
