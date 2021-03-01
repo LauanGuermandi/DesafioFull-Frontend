@@ -1,0 +1,162 @@
+<app-template-financeiro>
+    <form [formGroup]="dividaForm" novalidate class="form-horizontal" role="form">
+        <fieldset>
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <h2>Adicionar título</h2>
+                    </div>
+                </div>
+            </div>
+            <div [hidden]="!success" class="alert alert-success" role="alert">
+              O título foi adicionado(a) com sucesso!
+          </div>
+          <div [hidden]="!(!success && (errors.length > 0))">
+              <span *ngFor="let error of errors" class="alert alert-danger" role="alert">
+              {{ error }}
+            </span>
+          </div>
+            <div *ngIf="dividaForm.controls['valorOriginal'].invalid
+              && (dividaForm.controls['valorOriginal'].dirty
+              || dividaForm.controls['valorOriginal'].touched)" class="alert alert-danger">
+                <div *ngIf="dividaForm.controls['valorOriginal'].errors.required">
+                    O campo 'Valor' é obrigatório.
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-12 control-label" for="inputValor">Valor</label>
+                <div class="col-sm-12">
+                    <input currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" type="text" id="inputValor" formControlName="valorOriginal" placeholder="Valor" class="form-control">
+                </div>
+            </div>
+
+            <div *ngIf="dividaForm.controls['numeroTitulo'].invalid
+              && (dividaForm.controls['numeroTitulo'].dirty
+              || dividaForm.controls['numeroTitulo'].touched)" class="alert alert-danger">
+                <div *ngIf="dividaForm.controls['numeroTitulo'].errors.required">
+                    O campo 'Número do título' é obrigatório.
+                </div>
+                <div *ngIf="dividaForm.controls['numeroTitulo'].errors.maxlength
+              || dividaForm.controls['numeroTitulo'].errors.minlength">
+                    O campo 'Número do título' deve conter 10 caracteres.
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-12 control-label" for="inputNumero">Número do título<span class="required">*</span></label>
+                <div class="col-sm-12">
+                    <input type="text" id="inputNumero" formControlName="numeroTitulo" placeholder="Número do título" class="form-control" maxlength="10" minlength="10">
+                </div>
+            </div>
+
+            <div *ngIf="dividaForm.controls['porcentagemJuros'].invalid
+              && (dividaForm.controls['porcentagemJuros'].dirty
+              || dividaForm.controls['porcentagemJuros'].touched)" class="alert alert-danger">
+                <div *ngIf="dividaForm.controls['porcentagemJuros'].errors.required">
+                    O campo 'Porcentagem de juros' é obrigatório.
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-12 control-label" for="inputJuros">Porcentagem de juros<span class="required">*</span></label>
+                <div class="col-sm-12">
+                    <input type="number" id="inputJuros" formControlName="porcentagemJuros" placeholder="Porcentagem de juros" class="form-control">
+                </div>
+            </div>
+
+            <div *ngIf="dividaForm.controls['porcentagemMulta'].invalid
+              && (dividaForm.controls['porcentagemMulta'].dirty
+              || dividaForm.controls['porcentagemMulta'].touched)" class="alert alert-danger">
+                <div *ngIf="dividaForm.controls['porcentagemMulta'].errors.required">
+                    O campo 'Porcentagem de multa' é obrigatório.
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-12 control-label" for="inputMulta">Porcentagem de multa<span class="required">*</span></label>
+                <div class="col-sm-12">
+                    <input type="number" id="inputMulta" formControlName="porcentagemMulta" placeholder="Porcentagem de Multa" class="form-control">
+                </div>
+            </div>
+
+            <div class="parcelas col-sm-4">
+                <form [formGroup]="parcelaForm" novalidate class="bl-1">
+                    <h2>Parcelas</h2>
+                    <div *ngIf="parcelaForm.controls['numero'].invalid
+                && (parcelaForm.controls['numero'].dirty
+                || parcelaForm.controls['numero'].touched)" class="alert alert-danger">
+                        <div *ngIf="parcelaForm.controls['numero'].errors.required">
+                            O campo 'Número da parcela' é obrigatório.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-12 control-label" for="inputNumero">Número da parcela<span class="required">*</span></label>
+                        <div class="col-sm-12">
+                            <input type="number" id="inputNumero" formControlName="numero" placeholder="Número da parcela" class="form-control">
+                        </div>
+                    </div>
+
+                    <div *ngIf="parcelaForm.controls['valor'].invalid
+                && (parcelaForm.controls['valor'].dirty
+                || parcelaForm.controls['valor'].touched)" class="alert alert-danger">
+                        <div *ngIf="parcelaForm.controls['valor'].errors.required">
+                            O campo 'Valor da parcela' é obrigatório.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-12 control-label" for="inputValor">Valor da parcela<span class="required">*</span></label>
+                        <div class="col-sm-12">
+                            <input currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" type="text" id="inputValor" formControlName="valor" placeholder="Valor da parcela" class="form-control">
+                        </div>
+                    </div>
+
+                    <div *ngIf="parcelaForm.controls['dataVencimento'].invalid
+                && (parcelaForm.controls['dataVencimento'].dirty
+                || parcelaForm.controls['dataVencimento'].touched)" class="alert alert-danger">
+                        <div *ngIf="parcelaForm.controls['dataVencimento'].errors.required">
+                            O campo 'Data de vencimento da parcela' é obrigatório.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-12 control-label" for="inputDataVencimento">Data de Vencimento da parcela<span class="required">*</span></label>
+                        <div class="col-sm-12">
+                            <input type="date" id="inputDataVencimento" formControlName="dataVencimento" placeholder="dataVencimento da parcela" class="form-control">
+                        </div>
+                    </div>
+
+                    <button [disabled]="parcelaForm.pristine || parcelaForm.invalid" (click)="adicionarParcela()" type="button" class="btn btn-info add-parcela">
+            <i class="fa fa-plus"></i> Adicionar parcela
+          </button>
+                </form>
+            </div>
+            <div class="col-sm-8 list-parcelas">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Valor</th>
+                            <th scope="col">Data de vencimento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let parcela of parcelas; let i = index;">
+                            <td scope="row">{{ parcela.numero }}</td>
+                            <td>{{ valorFormatado(parcela.valor) }}</td>
+                            <td>{{ dataFormatada(parcela.dataVencimento).split(" ")[0] }}</td>
+                            <td><a (click)="removeParcela(i)"><i class="material-icons">&#xe872;</i></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="modal-footer">
+                <div class="col-sm-12">
+                  <button type="submit" [disabled]="dividaForm.pristine
+                      || dividaForm.invalid" class="btn btn-success" (click)="addDivida()">
+                    Adicionar
+                  </button>
+                  <a [routerLink]="['/Divida']" routerLinkActive="router-link-active" class="btn btn-default">
+                    Cancelar
+                  </a>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</app-template-financeiro>

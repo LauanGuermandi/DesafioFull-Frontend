@@ -1,0 +1,32 @@
+<app-template-financeiro>
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-8 title-small">
+                <h2>Dívidas de <b>{{ pessoa == null ? "" : pessoa.nome }}</b></h2>
+            </div>
+            <div class="col-sm-4 add-new-container">
+                <a routerLink="/pessoa/{{pessoaId}}/dividas/form" type="button" class="btn btn-info add-new">
+                    <i class="fa fa-plus"></i> Adicionar novo
+                </a>
+            </div>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Numero do titulo</th>
+                <th>Valor original</th>
+                <th>Ver detalhes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let divida of dividas">
+                <td>{{ divida.numeroTitulo }}</td>
+                <td>R$ {{ divida.valorOriginal }}</td>
+                <td>
+                    <a class="ver" title="Ver" data-toggle="tooltip"><i class="material-icons">&#xe8b6;</i></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</app-template-financeiro>

@@ -1,28 +1,26 @@
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
-import { DividaService } from './../../services/divida.service';
-import { Divida } from './../../models/divida.model';
-import { Parcela } from './../../models/parcela.model';
-import { ValidationErrors } from '@angular/forms';
+import { DividaService } from '../../services/divida.service';
+import { Divida } from '../../models/divida.model';
+import { Parcela } from '../../models/parcela.model';
 
 @Component({
-  selector: 'app-modal-add-divida',
-  templateUrl: './modal-add-divida.component.html',
-  styleUrls: ['./modal-add-divida.component.css']
+  selector: 'app-add-divida',
+  templateUrl: './add-divida.component.html',
+  styleUrls: ['./add-divida.component.css']
 })
-export class ModalAddDividaComponent implements OnInit {
-  modalRef: BsModalRef;
-
+export class AddDividaComponent implements OnInit {
   parcelas: Array<Parcela>;
 
   dividaForm: FormGroup;
   parcelaForm: FormGroup;
 
+  success = false;
+  errors = []
+
   constructor(
-    private modalService: BsModalService,
     private formBuilder: FormBuilder,
     private dividaService: DividaService,
     private activatedRoute: ActivatedRoute
@@ -31,13 +29,6 @@ export class ModalAddDividaComponent implements OnInit {
   }
 
   ngOnInit() {}
-
-  openModalWithClass(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(
-      template,
-      Object.assign({}, { class: 'gray modal-lg' })
-    );
-  }
 
   createForm() {
     this.dividaForm = this.formBuilder.group({
@@ -57,7 +48,14 @@ export class ModalAddDividaComponent implements OnInit {
   }
 
   adicionarParcela() {
-    var parcela = this.parcelaForm.value;
+    const parcela = this.parcelaForm.value;
+    let index = this.parcelas.findIndex(p => p.numero == parcela.numero);
+    this.errors = [];
+
+    if(index >= 0) {
+      this.errors.push("Este número de parcela já existe.");
+      return;
+    }
 
     if (this.parcelas == null) {
       this.parcelas = [];
@@ -69,6 +67,7 @@ export class ModalAddDividaComponent implements OnInit {
 
   addDivida() {
     const id = this.activatedRoute.snapshot.params.pessoaId;
+    this.errors = [];
 
     if (id != null) {
       this.dividaForm.patchValue({ pessoaId: id });
@@ -77,13 +76,19 @@ export class ModalAddDividaComponent implements OnInit {
       this.dividaService.post(this.dividaForm.value).subscribe(
         (response: Array<Divida>) => {
           this.dividaForm.reset();
-          this.modalService.hide(1);
+          this.success = true;
         },
-        (erro: any) => {
-          console.error(erro);
+        (response: any) => {
+          console.error(response.error);
+          this.success = false;
+          this.errors.push(response.error());
         }
       );
     }
+  }
+
+  removeParcela(index: number) {
+    this.parcelas.splice(index, 1);
   }
 
   dataFormatada(stringData: string){
@@ -93,10 +98,10 @@ export class ModalAddDividaComponent implements OnInit {
           month: '2-digit',
           day: '2-digit'
       };
-      return data.toLocaleString("pt-BR", options);
+      return data.toLocaleString('pt-BR', options);
   }
 
   valorFormatado(valor: string) {
-    return `R$ ${valor}`.replace(".", ",");
+    return `R$ ${valor}`.replace('.', ',');
   }
 }

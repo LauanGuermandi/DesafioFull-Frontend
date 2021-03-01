@@ -1,6 +1,6 @@
 {
-    "*.{ts}": [
-        "tslint 'src/**' --fix",
+    "*.{js,jsx,ts,tsx}": [
+        "eslint --cache --fix",
         "npm run test"
     ]
 }

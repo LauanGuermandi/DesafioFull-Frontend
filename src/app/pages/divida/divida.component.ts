@@ -1,10 +1,10 @@
-import { PessoaService } from './../../services/pessoa.service';
-import { Pessoa } from 'src/app/models/pessoa.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { DividaService } from './../../services/divida.service';
 import { Divida } from './../../models/divida.model';
+import { PessoaService } from './../../services/pessoa.service';
+import { Pessoa } from 'src/app/models/pessoa.model';
 
 @Component({
   selector: 'app-divida',
@@ -12,6 +12,7 @@ import { Divida } from './../../models/divida.model';
   styleUrls: ['./divida.component.css']
 })
 export class DividaComponent implements OnInit {
+  pessoaId: string;
   pessoa: Pessoa;
   dividas: Array<Divida>;
 
@@ -22,9 +23,9 @@ export class DividaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const pessoaId = this.activatedRoute.snapshot.params.pessoaId;
-    this.getPessoaById(pessoaId);
-    this.getAllDividas(pessoaId);
+    this.pessoaId = this.activatedRoute.snapshot.params.pessoaId;
+    this.getPessoaById(this.pessoaId);
+    this.getAllDividas(this.pessoaId);
   }
 
   getAllDividas(id: string) {
