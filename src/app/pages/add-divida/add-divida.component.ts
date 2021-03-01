@@ -12,6 +12,7 @@ import { Parcela } from '../../models/parcela.model';
   styleUrls: ['./add-divida.component.css']
 })
 export class AddDividaComponent implements OnInit {
+  pessoaId: string;
   parcelas: Array<Parcela>;
 
   dividaForm: FormGroup;
@@ -28,7 +29,9 @@ export class AddDividaComponent implements OnInit {
     this.createForm();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.pessoaId = this.activatedRoute.snapshot.params.pessoaId;
+  }
 
   createForm() {
     this.dividaForm = this.formBuilder.group({
@@ -66,11 +69,10 @@ export class AddDividaComponent implements OnInit {
   }
 
   addDivida() {
-    const id = this.activatedRoute.snapshot.params.pessoaId;
     this.errors = [];
 
-    if (id != null) {
-      this.dividaForm.patchValue({ pessoaId: id });
+    if (this.pessoaId != null) {
+      this.dividaForm.patchValue({ pessoaId: this.pessoaId });
       this.dividaForm.patchValue({ parcelas: this.parcelas });
 
       this.dividaService.post(this.dividaForm.value).subscribe(

@@ -1,3 +1,4 @@
+import { DividaCalculada } from './../models/divida-calculada.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -15,6 +16,10 @@ export class DividaService {
 
   getFromPessoaId(id: string): Observable<Divida[]>{
     return this.http.get<Divida[]>(`${this.baseUrl}/FromPessoa/${id}`);
+  }
+
+  getById(id: string): Observable<DividaCalculada>{
+    return this.http.get<DividaCalculada>(`${this.baseUrl}/${id}`);
   }
 
   post(divida: Divida){

@@ -1,0 +1,56 @@
+<app-template-financeiro>
+  <div class="table-title">
+    <div class="row">
+        <div class="col-sm-8 title-small">
+            <h2>Dívida - Detalhes</h2>
+        </div>
+    </div>
+  </div>
+  <div class="list">
+      <ul>
+        <li>
+          Número do título: {{ dividaCalculada.numeroTitulo }}
+        </li>
+        <li>
+          Nome do devedor: {{ dividaCalculada.nomeDevedor }}
+        </li>
+        <li>
+          Valor original: {{ formatarMoeda(dividaCalculada.valorOriginal) }}
+        </li>
+        <li>
+          Dias em atraso: {{ dividaCalculada.diasAtrasado }}
+        </li>
+        <li>
+          Valor atualizado: {{ formatarMoeda(dividaCalculada.valorAtualizado) }}
+        </li>
+        <li>
+          Multa: R$ {{ dividaCalculada.multa.toFixed(2) }}
+        </li>
+        <li>
+          Parcelas:
+          <ul *ngFor="let parcela of dividaCalculada.parcelas">
+              <li>
+                Parcela {{ parcela.numero }} - {{ parcela.diasAtrasado }} dia(s) atrasado
+              </li>
+              <li>
+                Valor Original: {{ formatarMoeda(parcela.valorOriginal) }}
+              </li>
+              <li>
+                Valor Atualizado: {{ formatarMoeda(parcela.valorAtualizado) }}
+              </li>
+              <li>
+                Juros: R$ {{ parcela.juros.toFixed(2) }}
+              </li>
+          </ul>
+        </li>
+      </ul>
+      <br>
+      <div class="col-sm-4 add-new-container datalhe-cancelar">
+        <a routerLink="/pessoa/{{pessoaId}}/dividas" type="button" class="btn btn-default">
+            Voltar
+        </a>
+      </div>
+      <br>
+  </div>
+</app-template-financeiro>
+

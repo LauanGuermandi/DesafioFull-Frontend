@@ -24,7 +24,7 @@
                 <td>{{ divida.numeroTitulo }}</td>
                 <td>R$ {{ divida.valorOriginal }}</td>
                 <td>
-                    <a class="ver" title="Ver" data-toggle="tooltip"><i class="material-icons">&#xe8b6;</i></a>
+                    <a routerLink="/pessoa/{{pessoaId}}/dividas/{{divida.id}}"class="ver" title="Ver" data-toggle="tooltip"><i class="material-icons">&#xe8b6;</i></a>
                 </td>
             </tr>
         </tbody>
